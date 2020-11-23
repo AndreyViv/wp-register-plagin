@@ -121,7 +121,6 @@ function viv_render_login() {
 				case 'incorrect_password':
 					$result .= sprintf( "<p class='error'>Неверный пароль. <a href='%s'>Забыли</a>?</p>", wp_lostpassword_url() );
 					break;
-				
 			}
 		}
 	}
