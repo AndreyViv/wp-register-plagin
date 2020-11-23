@@ -103,12 +103,12 @@ function viv_render_login() {
  
 		foreach ( $error_codes as $error_code ) {
 			switch ( $error_code ) {
-                case 'username_exists':
-                    $result .= '<p class="error">Такой пользователь существует</p>';
-                    break;
-                case 'email_exists':
-                    $result .= '<p class="error">Email занят </p>';
-                    break;
+                		case 'username_exists':
+                    			$result .= '<p class="error">Такой пользователь существует</p>';
+                    			break;
+                		case 'email_exists':
+                    			$result .= '<p class="error">Email занят </p>';
+                    			break;
 				case 'empty_username':
 					$result .= '<p class="error">Вы не забыли указать свой email/имя пользователя?</p>';
 					break;
