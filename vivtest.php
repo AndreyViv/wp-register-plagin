@@ -8,7 +8,7 @@
 function new_reg_form() {
     $form = '
         <div><form id="registerform" action="' . wp_registration_url() . '" method="post">
-	        <p>
+	        <p class="register-username">
 		        <label for="user_login">
 			        Имя пользователя<br>
 			        <input type="text" name="user_login" id="user_login" class="input" value="" size="20" style="">
@@ -17,13 +17,13 @@ function new_reg_form() {
 	        <p>
 		        <label for="user_email">
 			        E-mail<br>
-			        <input type="email" name="user_email" id="user_email" class="input" value="" size="25">
+			        <input type="email" name="user_email" id="user_email" class="input" value="" size="20">
 		        </label>
             </p>
             <p>
 		        <label for="user_password">
 			        Пароль<br>
-			        <input type="text" name="user_password" id="user_password" class="input" value="" size="25">
+			        <input type="text" name="user_password" id="user_password" class="input" value="" size="20">
 		        </label>
 	        </p>
 
@@ -96,19 +96,19 @@ function viv_render_login() {
         $title = 'Войти на сайт';
     }
     
-	$result = '<div class="login-form-container"><h2>' . $title . '</h2>';
+	$result = '<div style="width: 320px; padding: 8% 0 0; margin: auto;" class="login-form-container"><h2>' . $title . '</h2>';
 	
 	if ( isset( $_REQUEST['errors'] ) ) {
 		$error_codes = explode( ',', $_REQUEST['errors'] );
  
 		foreach ( $error_codes as $error_code ) {
 			switch ( $error_code ) {
-                		case 'username_exists':
-                    			$result .= '<p class="error">Такой пользователь существует</p>';
-                    			break;
-                		case 'email_exists':
-                    			$result .= '<p class="error">Email занят </p>';
-                    			break;
+                case 'username_exists':
+                    $result .= '<p class="error">Такой пользователь существует</p>';
+                    break;
+                case 'email_exists':
+                    $result .= '<p class="error">Email занят </p>';
+                    break;
 				case 'empty_username':
 					$result .= '<p class="error">Вы не забыли указать свой email/имя пользователя?</p>';
 					break;
@@ -128,17 +128,17 @@ function viv_render_login() {
     if ('register' == $action) {
         $sign_in_url = explode('?', wp_get_referer())[0];
         $result .= new_reg_form();
-        $result .= '<a class="login" href="' . $sign_in_url . '">Войти</a></div>';
+        $result .= '<a class="login-link" href="' . $sign_in_url . '">Войти</a></div>';
     } else {
         $sign_up_url = explode('?', wp_get_referer())[0] . '?action=register';
         $result .= wp_login_form(
             array(
                 'echo' => false,
-                'redirect' => $_SERVER['REQUEST_URI']
+                'redirect' => $_SERVER['REQUEST_URI'],
             )
         ); 
-        $result .= '<a class="registration" href="' . $_SERVER['REQUEST_URI'] . '?action=register">Зарегестрироваться</a></div>';
-        $result .= '<a class="forgot-password" href="' . wp_lostpassword_url() . '">Забыли пароль</a></div>';
+        $result .= '<p style="margin: auto;"><a class="registration" href="' . $sign_up_url . '">Зарегестрироваться</a></p>';
+        $result .= '<p><a class="forgot-password" href="' . wp_lostpassword_url() . '">Забыли пароль</a></p></div>';
     }
 
 	return $result;

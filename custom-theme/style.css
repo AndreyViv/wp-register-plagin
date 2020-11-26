@@ -1,0 +1,16 @@
+/*
+Theme Name: Graphy Custom
+Description: Дочерняя тема для темы Graphy 
+Author: Andrey Viv
+Template: graphy
+*/
+
+@import url("../graphy/style.css");
+
+#site-title a {
+    color: #009900;
+}
+
+form.message-form {
+
+}
