@@ -9,17 +9,25 @@ get_header(); ?>
 
         <?php if ( is_user_logged_in() ) : ?>
             
-            <div id="message-div" class ="container-fluid">
-                <form action="<?php esc_url( admin_url('admin-post.php') ) ?>" method="post">
-                    <p for="message">Ваше сообщение</p>
-                    <p><textarea rows="4" name="message" id="message"></textarea></p>
-                    <input type="hidden" name="action" value="message_form">
-                    <p><input type="submit" value="Отправить сообщение"></p>
-                </form>
-            </div>
+            <?php if ( $_GET['message'] ) : ?>
 
-            <?php viv_message_list(); ?>
+                <?php viv_coment_form(); ?>
 
+            <?php else : ?>  
+                
+                <div id="message-div" class ="container-fluid">
+                    <form action="<?php esc_url( admin_url('admin-post.php') ) ?>" method="post">
+                        <p for="message">Ваше сообщение</p>
+                        <p><textarea rows="4" name="message" id="message"></textarea></p>
+                        <input type="hidden" name="action" value="message_form">
+                        <p><input type="submit" value="Отправить сообщение"></p>
+                    </form>
+                </div>
+
+                <?php viv_message_list(); ?>
+                
+            <?php endif; ?>
+        
         <?php else : ?>
             
             <div id="message-div">
