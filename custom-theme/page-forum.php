@@ -10,7 +10,7 @@ get_header(); ?>
         <?php if ( is_user_logged_in() ) : ?>
             
             <div id="message-div" class ="container-fluid">
-                <form action="'. esc_url( admin_url('admin-post.php') ) .'" method="post">
+                <form action="<?php esc_url( admin_url('admin-post.php') ) ?>" method="post">
                     <p for="message">Ваше сообщение</p>
                     <p><textarea rows="4" name="message" id="message"></textarea></p>
                     <input type="hidden" name="action" value="message_form">
